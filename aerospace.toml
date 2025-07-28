@@ -9,7 +9,9 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+      'exec-and-forget brew services start borders'
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -42,12 +44,12 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 4
-inner.vertical =   4
-outer.left =       4
-outer.bottom =     4
-outer.top =        4
-outer.right =      4
+inner.horizontal = 2
+inner.vertical =   2
+outer.left =       2
+outer.bottom =     2
+outer.top =        2
+outer.right =      2
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -154,13 +156,12 @@ alt-shift-up = 'fullscreen'
 
 [mode.service.binding]
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-shift-r = ['reload-config', '''exec-and-forget osascript -e 'display dialog "Reloaded config"' ''', 'mode main']
+shift-r = ['reload-config', 'exec-and-forget brew services restart borders', '''exec-and-forget osascript -e 'display notification "Reloaded config" with title "AeroSpace"' ''', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
-
 
 ## dev
 [[on-window-detected]]
@@ -200,4 +201,3 @@ run = "move-node-to-workspace W"
 [[on-window-detected]]
 check-further-callbacks = true
 run = ["layout floating", "move-node-to-workspace 1"]
-
