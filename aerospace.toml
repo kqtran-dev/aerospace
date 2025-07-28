@@ -1,7 +1,3 @@
-# Place a copy of this config to ~/.aerospace.toml
-# After that, you can edit ~/.aerospace.toml to your liking
-
-# You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
@@ -44,12 +40,12 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 2
-inner.vertical =   2
-outer.left =       2
-outer.bottom =     2
-outer.top =        2
-outer.right =      2
+inner.horizontal = 8
+inner.vertical =   8
+outer.left =       8
+outer.bottom =     8
+outer.top =        8
+outer.right =      8
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -81,10 +77,6 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
 alt-a = 'workspace A'
 alt-b = 'workspace B'
 alt-c = 'workspace C'
@@ -93,7 +85,12 @@ alt-e = 'workspace E'
 alt-f = 'workspace F'
 alt-g = 'workspace G'
 alt-i = 'workspace I'
-alt-m = 'workspace M'
+# alt-m = [
+#     'workspace 1',
+#     'exec-and-forget open -n /Applications/Ghostty.app /opt/homebrew/bin/tmux attach -t aerc'
+# ]
+# cmd-enter = ['exec-and-forget open -n /Applications/Ghostty.app /opt/homebrew/bin/tmux attach -t arc']
+# alt-m = 'workspace M'
 alt-n = 'workspace N'
 alt-o = 'workspace O'
 alt-p = 'workspace P'
@@ -114,10 +111,6 @@ alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
@@ -126,7 +119,7 @@ alt-shift-e = 'move-node-to-workspace E'
 alt-shift-f = 'move-node-to-workspace F'
 alt-shift-g = 'move-node-to-workspace G'
 alt-shift-i = 'move-node-to-workspace I'
-alt-shift-m = 'move-node-to-workspace M'
+# alt-shift-m = 'move-node-to-workspace M'
 alt-shift-n = 'move-node-to-workspace N'
 alt-shift-o = 'move-node-to-workspace O'
 alt-shift-p = 'move-node-to-workspace P'
@@ -156,12 +149,19 @@ alt-shift-up = 'fullscreen'
 
 [mode.service.binding]
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-shift-r = ['reload-config', 'exec-and-forget brew services restart borders', '''exec-and-forget osascript -e 'display notification "Reloaded config" with title "AeroSpace"' ''', 'mode main']
+shift-r = [
+    'reload-config',
+    'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
+    '''exec-and-forget osascript -e 'display notification "Reloaded config" with title "AeroSpace"' ''',
+    'mode main'
+]
 
 alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+[mode.main]
 
 ## dev
 [[on-window-detected]]
@@ -191,13 +191,25 @@ run = "move-node-to-workspace C"
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
+if.window-title-regex-substring = 'Library'
+if.workspace = 'W'
+check-further-callbacks = true
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
 run = "move-node-to-workspace W"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace W"
 
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = 'move-node-to-workspace 2'
+
 ## move remaining windows to a general workspace
 [[on-window-detected]]
 check-further-callbacks = true
 run = ["layout floating", "move-node-to-workspace 1"]
+
