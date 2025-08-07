@@ -144,11 +144,12 @@ cmd-h = [] # Disable "hide application"
 cmd-alt-h = [] # Disable "hide others"
 # bi:d uparrow to fullscreen
 alt-shift-up = 'fullscreen'
+alt-shift-right = ['move-workspace-to-monitor right']
+alt-shift-left = ['move-workspace-to-monitor left']
 
 [mode.service.binding]
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 shift-r = [
-
     'reload-config',
     # 'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
     # commenting out - this is too slow for now
