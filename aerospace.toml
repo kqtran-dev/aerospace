@@ -6,7 +6,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-      'exec-and-forget brew services start borders'
+      # 'exec-and-forget brew services start borders'
 ]
 
 # Start AeroSpace at login
@@ -19,7 +19,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 100
+accordion-padding = 150
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
@@ -119,7 +119,6 @@ alt-shift-e = 'move-node-to-workspace E'
 alt-shift-f = 'move-node-to-workspace F'
 alt-shift-g = 'move-node-to-workspace G'
 alt-shift-i = 'move-node-to-workspace I'
-# alt-shift-m = 'move-node-to-workspace M'
 alt-shift-n = 'move-node-to-workspace N'
 alt-shift-o = 'move-node-to-workspace O'
 alt-shift-p = 'move-node-to-workspace P'
@@ -132,7 +131,6 @@ alt-shift-v = 'move-node-to-workspace V'
 alt-shift-w = 'move-node-to-workspace W'
 alt-shift-x = 'move-node-to-workspace X'
 alt-shift-y = 'move-node-to-workspace Y'
-# alt-shift-z = 'move-node-to-workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -150,8 +148,10 @@ alt-shift-up = 'fullscreen'
 [mode.service.binding]
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 shift-r = [
+
     'reload-config',
-    'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
+    # 'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
+    # commenting out - this is too slow for now
     '''exec-and-forget osascript -e 'display notification "Reloaded config" with title "AeroSpace"' ''',
     'mode main'
 ]
