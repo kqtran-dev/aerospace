@@ -204,7 +204,7 @@ if.app-id = 'com.valvesoftware.steam.helper'
 # if.window-title-regex-substring = 'notificationtoasts_46_desktop'
 if.window-title-regex-substring = '^notificationtoasts.*'
 check-further-callbacks = true
-run = ["layout floating"]
+run = ["layout tiling"]
 
 [[on-window-detected]]
 if.app-id = 'com.valvesoftware.steam.helper'
