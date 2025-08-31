@@ -213,6 +213,12 @@ check-further-callbacks = true
 run = ["layout tiling", "move-node-to-workspace C"]
 
 [[on-window-detected]]
+if.app-id = 'Slack'
+# if.window-title-regex-substring = '.*Slack$'
+check-further-callbacks = true
+run = ["layout tiling", "move-node-to-workspace C"]
+
+[[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
 if.window-title-regex-substring = 'Library'
 if.workspace = 'W'
