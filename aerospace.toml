@@ -19,26 +19,16 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 150
+accordion-padding = 100
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 automatically-unhide-macos-hidden-apps = false # setting to false because this is how I use numi
+# this behavior could be changed by using minimize instead of hide if desired
 
-
-# Possible values: (qwerty|dvorak|colemak)
-# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
 preset = 'qwerty'
 
-# Gaps between windows (inner-*) and between monitor edges (outer-*).
-# Possible values:
-# - Constant:     gaps.outer.top = 8
-# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
-#                 In this example, 24 is a default value when there is no match.
-#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
-#                 See:
-#                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 8
 inner.vertical =   8
@@ -51,9 +41,18 @@ outer.right =      8
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
+[mode.open.binding]
+esc = [ 'mode main' ]
+# App shortcuts
+1 = [ 'exec-and-forget open -a /Applications/Ghostty.app/', 'mode main' ]
+f = [ 'exec-and-forget open -a /Applications/Firefox.app/', 'mode main' ]
+d = [ 'exec-and-forget open -a /Applications/Discord.app/', 'mode main' ]
+s = [ 'exec-and-forget open -a /Applications/Steam.app/', 'mode main' ]
+
 [mode.main.binding]
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
+alt-m = 'macos-native-minimize'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -82,14 +81,7 @@ alt-e = 'workspace E'
 alt-f = 'workspace F'
 alt-g = 'workspace G'
 alt-i = 'workspace I'
-# alt-m = [
-#     'workspace 1',
-#     'exec-and-forget open -n /Applications/Ghostty.app /opt/homebrew/bin/tmux attach -t aerc'
-# ]
-# cmd-enter = ['exec-and-forget open -n /Applications/Ghostty.app /opt/homebrew/bin/tmux attach -t arc']
-# alt-m = 'workspace M'
 alt-n = 'workspace N'
-alt-o = 'workspace O'
 alt-p = 'workspace P'
 alt-q = 'workspace Q'
 alt-r = 'workspace R'
@@ -117,7 +109,6 @@ alt-shift-f = 'move-node-to-workspace F'
 alt-shift-g = 'move-node-to-workspace G'
 alt-shift-i = 'move-node-to-workspace I'
 alt-shift-n = 'move-node-to-workspace N'
-alt-shift-o = 'move-node-to-workspace O'
 alt-shift-p = 'move-node-to-workspace P'
 alt-shift-q = 'move-node-to-workspace Q'
 # alt-shift-r = 'move-node-to-workspace R'
@@ -135,8 +126,10 @@ alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
+## Mode Bindings
 alt-shift-semicolon = 'mode service'
 alt-shift-r = 'mode resize'
+alt-shift-o = 'mode open'
 
 cmd-h = [] # Disable "hide application"
 cmd-alt-h = [] # Disable "hide others"
@@ -166,7 +159,7 @@ r = [
 ]
 shift-r = [
     'reload-config',
-    # 'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
+    'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
     # commenting out - this is too slow for now
     '''exec-and-forget osascript -e 'display notification "Reloaded config" with title "AeroSpace"' ''',
     'mode main'
@@ -208,9 +201,10 @@ run = ["layout tiling"]
 
 [[on-window-detected]]
 if.app-id = 'com.valvesoftware.steam.helper'
-if.window-title-regex-substring = '.*Chat$'
+if.window-title-regex-substring = '.*Chat*$'
 check-further-callbacks = true
 run = ["layout tiling", "move-node-to-workspace C"]
+
 
 [[on-window-detected]]
 if.app-id = 'Slack'
