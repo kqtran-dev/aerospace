@@ -160,7 +160,7 @@ r = [
 ]
 shift-r = [
     'reload-config',
-    'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
+    # 'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
     # commenting out - this is too slow for now
     '''exec-and-forget osascript -e 'display notification "Reloaded config" with title "AeroSpace"' ''',
     'mode main'
