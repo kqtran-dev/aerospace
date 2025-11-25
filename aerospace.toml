@@ -182,7 +182,7 @@ run = ["layout tiling"]
 
 [[on-window-detected]]
 if.app-id = 'com.valvesoftware.steam.helper'
-if.window-title-regex-substring = 'Steam'
+if.window-title-regex-substring = '^Friends List$'
 check-further-callbacks = true
 run = ["layout tiling", "move-node-to-workspace C"]
 
@@ -192,6 +192,11 @@ if.window-title-regex-substring = '.*Chat*$'
 check-further-callbacks = true
 run = ["layout tiling", "move-node-to-workspace C"]
 
+[[on-window-detected]]
+if.app-id = 'com.valvesoftware.steam.helper'
+if.window-title-regex-substring = 'Steam'
+check-further-callbacks = true
+run = ["layout tiling", "move-node-to-workspace G"]
 
 [[on-window-detected]]
 if.app-id = 'Slack'
