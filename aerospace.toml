@@ -133,6 +133,7 @@ esc = [ 'mode main' ]
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 r = [
     'flatten-workspace-tree',
+    'balance-sizes',
     'mode main'
 ]
 shift-r = [
