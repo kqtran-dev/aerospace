@@ -141,7 +141,8 @@ shift-r = [
     # 'exec-and-forget brew services restart borders', # fixes jankyborders if they were resized
     # commenting out - this is too slow for now
     '''exec-and-forget osascript -e 'display notification "Reloaded config" with title "AeroSpace"' ''',
-    'mode main'
+    'mode main',
+    'flatten-workspace-tree',
 ]
 
 
