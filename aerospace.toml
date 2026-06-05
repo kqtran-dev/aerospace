@@ -69,7 +69,7 @@ alt-shift-cmd-ctrl-s = [ 'exec-and-forget open -a /Applications/Steam.app/', 'mo
 
 alt-shift-space = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 alt-e = 'layout tiles horizontal vertical'
-alt-s = 'layout accordion horizontal vertical'
+alt-s = 'layout accordion vertical'
 alt-shift-minus = 'macos-native-minimize'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
