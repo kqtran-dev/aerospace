@@ -135,6 +135,7 @@ esc = [ 'mode main' ]
 [mode.service.binding]
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 r = [
+    '''exec-and-forget osascript -e 'display notification "Reloaded layout" with title "AeroSpace"' ''',
     'flatten-workspace-tree',
     'balance-sizes',
     'mode main'
@@ -146,6 +147,7 @@ shift-r = [
     '''exec-and-forget osascript -e 'display notification "Reloaded config" with title "AeroSpace"' ''',
     'mode main',
     'flatten-workspace-tree',
+    'balance-sizes',
 ]
 
 
